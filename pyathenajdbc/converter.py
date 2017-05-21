@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
-from __future__ import unicode_literals
+
+
 import logging
 import binascii
 from datetime import datetime
@@ -14,7 +14,7 @@ _logger = logging.getLogger(__name__)
 
 
 if PY3:
-    unicode = str
+    str = str
 
 
 def _to_none(result_set, index):
@@ -26,10 +26,10 @@ def _to_unicode(result_set, index):
     was_null = result_set.wasNull()
     if was_null:
         return None
-    elif isinstance(val, unicode):
+    elif isinstance(val, str):
         return val
     else:
-        return unicode(val)
+        return str(val)
 
 
 def _to_date(result_set, index):

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
-from __future__ import unicode_literals
+
+
 from datetime import datetime, date
 from decimal import Decimal
 
@@ -19,7 +19,7 @@ from tests.util import with_engine
 
 
 if PY2:
-    from urllib import quote_plus
+    from urllib.parse import quote_plus
 else:
     from urllib.parse import quote_plus
 
@@ -99,7 +99,7 @@ class TestSQLAlchemyAthena(unittest.TestCase):
     def test_get_table_names(self, engine, connection):
         meta = MetaData()
         meta.reflect(bind=engine)
-        print(meta.tables)
+        print((meta.tables))
         self.assertIn('one_row', meta.tables)
         self.assertIn('one_row_complex', meta.tables)
 

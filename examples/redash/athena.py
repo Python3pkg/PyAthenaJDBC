@@ -93,7 +93,7 @@ class Athena(BaseQueryRunner):
                 schema[table_name] = {'name': table_name, 'columns': []}
             schema[table_name]['columns'].append(row['column_name'])
 
-        return schema.values()
+        return list(schema.values())
 
     def run_query(self, query, user):
         conn = connect(s3_staging_dir=self.configuration['s3_staging_dir'],
@@ -110,7 +110,7 @@ class Athena(BaseQueryRunner):
                 column_tuples = [(i[0], _ATHENA_TYPES_MAPPING.get(i[1], None))
                                  for i in cursor.description]
                 columns = self.fetch_columns(column_tuples)
-                rows = [dict(zip(([c['name'] for c in columns]), r))
+                rows = [dict(list(zip(([c['name'] for c in columns]), r)))
                         for i, r in enumerate(cursor.fetchall())]
                 data = {'columns': columns, 'rows': rows}
                 json_data = json.dumps(data, cls=JSONEncoder)

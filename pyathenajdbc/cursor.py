@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
-from __future__ import unicode_literals
+
+
 import logging
 
 from past.builtins.misc import xrange
@@ -75,7 +75,7 @@ class Cursor(object):
                 self._meta_data.getScale(i),
                 self._meta_data.isNullable(i)
             )
-            for i in xrange(1, self._meta_data.getColumnCount() + 1)
+            for i in range(1, self._meta_data.getColumnCount() + 1)
         ]
         return self._description
 
@@ -145,12 +145,12 @@ class Cursor(object):
         if not self.has_result_set:
             raise ProgrammingError('No result set.')
 
-        if not self._result_set.next():
+        if not next(self._result_set):
             return None
         self._rownumber += 1
         return tuple([
             self._converter.convert(self._meta_data.getColumnType(i), self._result_set, i)
-            for i in xrange(1, self._meta_data.getColumnCount() + 1)
+            for i in range(1, self._meta_data.getColumnCount() + 1)
         ])
 
     @synchronized
@@ -162,7 +162,7 @@ class Cursor(object):
         if not size or size <= 0:
             size = self._arraysize
         rows = []
-        for i in xrange(size):
+        for i in range(size):
             row = self._fetch()
             if row:
                 rows.append(row)

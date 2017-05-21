@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
-from __future__ import unicode_literals
+
+
 import contextlib
 import re
 import time
@@ -47,7 +47,7 @@ class TestPyAthenaJDBC(unittest.TestCase):
         cursor.execute('SELECT * FROM one_row')
         self.assertEqual(cursor.fetchall(), [(1,)])
         cursor.execute('SELECT a FROM many_rows ORDER BY a')
-        self.assertEqual(cursor.fetchall(), [(i,) for i in xrange(10000)])
+        self.assertEqual(cursor.fetchall(), [(i,) for i in range(10000)])
 
     @with_cursor
     def test_null_param(self, cursor):
@@ -141,7 +141,7 @@ class TestPyAthenaJDBC(unittest.TestCase):
         self.assertEqual(cursor.fetchall(), [(None,)] * 10000)
         cursor.execute('SELECT IF(a %% 11 = 0, null, a) FROM many_rows')
         self.assertEqual(cursor.fetchall(),
-                         [(None if a % 11 == 0 else a,) for a in xrange(10000)])
+                         [(None if a % 11 == 0 else a,) for a in range(10000)])
 
     @with_cursor
     def test_description(self, cursor):

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
-from __future__ import unicode_literals
+
+
 import contextlib
 import os
 import random
@@ -16,7 +16,7 @@ from tests.util import Env, read_query
 ENV = Env()
 BASE_PATH = os.path.dirname(os.path.abspath(__file__))
 SCHEMA = 'test_pyathena_jdbc_' + ''.join([random.choice(
-    string.ascii_lowercase + string.digits) for i in xrange(10)])
+    string.ascii_lowercase + string.digits) for i in range(10)])
 
 
 @pytest.fixture(scope='session', autouse=True)

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #  -*- coding: utf-8 -*-
-from __future__ import print_function
+
 import codecs
 import os
 import sys
@@ -12,7 +12,7 @@ import pyathenajdbc
 
 
 if sys.version_info[0] == 2:
-    from urllib import urlretrieve
+    from urllib.request import urlretrieve
 else:
     from urllib.request import urlretrieve
 

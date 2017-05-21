@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
-from __future__ import unicode_literals
+
+
 import logging
 from datetime import date, datetime
 from decimal import Decimal
@@ -14,7 +14,7 @@ _logger = logging.getLogger(__name__)
 
 
 if PY3:
-    unicode = str
+    str = str
 
 
 def _escape_presto(val):
@@ -71,9 +71,9 @@ def _format_seq(formatter, escaper, val):
     for v in val:
         func = formatter.get_formatter(v)
         formatted = func(formatter, escaper, v)
-        if not isinstance(formatted, (str, unicode, )):
+        if not isinstance(formatted, str):
             # force string format
-            if isinstance(formatted, (float, Decimal, )):
+            if isinstance(formatted, (float, Decimal )):
                 formatted = '{0:f}'.format(formatted)
             else:
                 formatted = '{0}'.format(formatted)
@@ -127,7 +127,7 @@ _DEFAULT_FORMATTERS = {
     Decimal: _format_default,
     bool: _format_bool,
     str: _format_str,
-    unicode: _format_str,
+    str: _format_str,
     list: _format_seq,
     set: _format_seq,
     tuple: _format_seq,
